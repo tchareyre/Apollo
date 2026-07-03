@@ -71,8 +71,8 @@ ProgressBar {
 			anchors.fill: parent
 			gradient: Gradient {
 				orientation: Gradient.Horizontal
-				GradientStop { position: 0.0; color: "#FF9E79" }
-				GradientStop { position: 1.0; color: "#FE5E00" }
+				GradientStop { position: 0.0; color: "#8577F0" }
+				GradientStop { position: 1.0; color: "#5546EA" }
 			}
 			radius: Utils.getSizeWithScreenRatio(70)
 		}
