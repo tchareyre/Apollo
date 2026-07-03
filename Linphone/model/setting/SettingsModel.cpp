@@ -1064,7 +1064,7 @@ DEFINE_GETSET_CONFIG(SettingsModel,
 						assistantHideCreateAccount,
 						AssistantHideCreateAccount,
 						"assistant_hide_create_account",
-						false)
+						true)
 DEFINE_GETSET_CONFIG(SettingsModel,
 						bool,
 						Bool,
@@ -1100,7 +1100,7 @@ DEFINE_GETSET_CONFIG(SettingsModel,
 						assistantGoDirectlyToThirdPartySipAccountLogin,
 						AssistantGoDirectlyToThirdPartySipAccountLogin,
 						"assistant_go_directly_to_third_party_sip_account_login",
-						false)
+						true)
 DEFINE_GETSET_CONFIG_STRING(SettingsModel,
 							assistantThirdPartySipAccountDomain,
 							AssistantThirdPartySipAccountDomain,
