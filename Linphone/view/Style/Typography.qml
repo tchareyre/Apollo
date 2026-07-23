@@ -6,42 +6,42 @@ QtObject {
 
 	// Title/H4 - Bloc title
 	property font h4: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(16),
         weight: Font.ExtraBold
 	})
 
 	// Title/H3M -  Bloc title
 	property font h3m: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(16),
         weight: Font.Bold
 	})
 	
 	// Title/H3 -  Bloc title
 	property font h3: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(22),
         weight: Font.ExtraBold
 	})
 
 	// Title/H2M -  Large bloc title
 	property font h2m: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(20),
         weight: Font.ExtraBold
 	})
 
 	// Title/H2 -  Large bloc title
 	property font h2: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(29),
         weight: Font.ExtraBold
 	})
 
 	// Title/H1 -  Large bloc title
 	property font h1: Qt.font( {
-		family: DefaultStyle.defaultFont,
+		family: DefaultStyle.titleFont,
         pixelSize: Utils.getSizeWithScreenRatio(36),
         weight: Font.ExtraBold
 	})
