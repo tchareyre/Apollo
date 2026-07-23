@@ -115,6 +115,7 @@ private:
 
 	void setPathBeforeCreation();
 	void setPathAfterStart();
+	void syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &core);
 
 	static std::shared_ptr<CoreModel> gCoreModel;
 

@@ -531,7 +531,38 @@ void CoreModel::onConfiguringStatus(const std::shared_ptr<linphone::Core> &core,
                                     const std::string &message) {
 	mConfigStatus = status;
 	mConfigMessage = Utils::coreStringToAppString(message);
+	if (status == linphone::ConfiguringState::Successful) syncDirectoryFriendList(core);
 	emit configuringStatus(core, status, message);
+}
+
+// Orbit's shared directory has no CardDAV server to point liblinphone's
+// native CardDAV client at -- it's exposed as a plain vCard4 list instead
+// (FriendList::Type::VCard4, a simple authenticated GET returning
+// text/vcard, which the org's remote-provisioning config can point at
+// directly via a custom [misc] key, unlike the SIP account section this
+// key isn't protected by liblinphone's "don't touch existing values" rule
+// since it's never set outside provisioning -- so this runs, and
+// re-syncs the same list, on every app startup, keeping the directory
+// current with whatever the admin has in Orbit.
+void CoreModel::syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &core) {
+	auto directoryUrl = core->getConfig()->getString("misc", "directory_vcard_url", "");
+	if (directoryUrl.empty()) return;
+	std::shared_ptr<linphone::FriendList> directoryList;
+	for (const auto &list : core->getFriendsLists()) {
+		if (list->getType() == linphone::FriendList::Type::VCard4 && list->getUri() == directoryUrl) {
+			directoryList = list;
+			break;
+		}
+	}
+	if (!directoryList) {
+		directoryList = core->createFriendList();
+		directoryList->setType(linphone::FriendList::Type::VCard4);
+		directoryList->setUri(directoryUrl);
+		directoryList->setDisplayName("Annuaire Orbit");
+		directoryList->enableDatabaseStorage(true);
+		core->addFriendList(directoryList);
+	}
+	directoryList->synchronizeFriendsFromServer();
 }
 void CoreModel::onDefaultAccountChanged(const std::shared_ptr<linphone::Core> &core,
                                         const std::shared_ptr<linphone::Account> &account) {
