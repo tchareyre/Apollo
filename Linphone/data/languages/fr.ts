@@ -4160,6 +4160,12 @@ Expiration : %1</translation>
         <translation>Licences GPLv3</translation>
     </message>
     <message>
+        <location filename="../../view/Page/Main/Help/HelpPage.qml" line="124"/>
+        <source>help_about_source_title</source>
+        <extracomment>&quot;Code source&quot;</extracomment>
+        <translation>Code source</translation>
+    </message>
+    <message>
         <location filename="../../view/Page/Main/Help/HelpPage.qml" line="129"/>
         <source>help_about_contribute_translations_title</source>
         <extracomment>&quot;Contribuer à la traduction de %1&quot;</extracomment>

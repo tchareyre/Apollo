@@ -115,10 +115,21 @@ AbstractMainPage {
 				iconSource: AppIcons.license
                 //: "Licences GPLv3"
                 title: qsTr("help_about_gpl_licence_title")
-				subTitle: (copyrightRangeDate || applicationVendor ? '\u00A9 ': '') + (copyrightRangeDate ? copyrightRangeDate : '')+ (applicationVendor ? ' ' + applicationVendor : '')
+				subTitle: (copyrightRangeDate || applicationCopyrightHolder ? '\u00A9 ': '') + (copyrightRangeDate ? copyrightRangeDate : '')+ (applicationCopyrightHolder ? ' ' + applicationCopyrightHolder : '')
 				onClicked: {
 					rightPanelStackView.clear()
 					Qt.openUrlExternally(applicationLicenceUrl)
+				}
+			}
+			HelpIconLabelButton {
+				Layout.fillWidth: true
+				iconSource: AppIcons.globe
+                //: "Code source"
+                title: qsTr("help_about_source_title")
+				subTitle: applicationModificationNotice
+				onClicked: {
+					rightPanelStackView.clear()
+					Qt.openUrlExternally(applicationSourceUrl)
 				}
 			}
 			HelpIconLabelButton {

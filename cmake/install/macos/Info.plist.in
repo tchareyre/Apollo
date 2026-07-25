@@ -29,7 +29,7 @@
 	<key>CFBundleVersion</key>
 	<string>@PACKAGE_VERSION@</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright @COPYRIGHT_RANGE_DATE@ @APPLICATION_VENDOR@</string>
+	<string>Copyright @COPYRIGHT_RANGE_DATE@ @APPLICATION_COPYRIGHT_HOLDER@</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>@CMAKE_OSX_DEPLOYMENT_TARGET@</string>
 	<key>NSAppSleepDisabled</key>

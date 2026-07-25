@@ -106,7 +106,15 @@ Rectangle {
 					imageSource: AppIcons.copyright
                     //: "Copyright
                     title: qsTr("help_about_copyright_title")
-					text: applicationVendor
+					text: applicationCopyrightHolder
+				}
+				AboutLine {
+					imageSource: AppIcons.globe
+                    //: "Code source"
+                    title: qsTr("help_about_source_title")
+					text: applicationModificationNotice
+					enableMouseArea: true
+					onContentClicked: Qt.openUrlExternally(applicationSourceUrl)
 				}
 				Item {
 					// Item to shift close button

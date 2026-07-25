@@ -738,6 +738,22 @@ void App::initCore() {
 #else
 				mEngine->rootContext()->setContextProperty("copyrightRangeDate", "");
 #endif
+#ifdef APPLICATION_COPYRIGHT_HOLDER
+			    mEngine->rootContext()->setContextProperty("applicationCopyrightHolder", APPLICATION_COPYRIGHT_HOLDER);
+#else
+				mEngine->rootContext()->setContextProperty("applicationCopyrightHolder", "");
+#endif
+#ifdef APPLICATION_MODIFICATION_NOTICE
+			    mEngine->rootContext()->setContextProperty("applicationModificationNotice",
+			                                               APPLICATION_MODIFICATION_NOTICE);
+#else
+				mEngine->rootContext()->setContextProperty("applicationModificationNotice", "");
+#endif
+#ifdef APPLICATION_SOURCE_URL
+			    mEngine->rootContext()->setContextProperty("applicationSourceUrl", APPLICATION_SOURCE_URL);
+#else
+				mEngine->rootContext()->setContextProperty("applicationSourceUrl", "");
+#endif
 			    mEngine->rootContext()->setContextProperty("applicationName", APPLICATION_NAME);
 			    mEngine->rootContext()->setContextProperty("executableName", EXECUTABLE_NAME);
 			    mEngine->rootContext()->setContextProperty("FocusNavigator", new FocusNavigator(mEngine));
