@@ -569,7 +569,7 @@ void App::setSelf(QSharedPointer<App>(me)) {
 	                                         });
 	mCoreModelConnection->makeConnectToCore(&App::lForceOidcTimeout, [this] {
 		qDebug() << "App: force oidc timeout";
-		mCoreModelConnection->invokeToModel([this] { emit CoreModel::getInstance()->forceOidcTimeout(); });
+		mCoreModelConnection->invokeToModel([this] { emit CoreModel::getInstance() -> forceOidcTimeout(); });
 	});
 	mCoreModelConnection->makeConnectToModel(&CoreModel::timeoutTimerStarted, [this]() {
 		qDebug() << "App: oidc timer started";
@@ -782,6 +782,8 @@ void App::initCore() {
 					    else mCallList->lUpdate();
 					    if (!mChatList) setChatList(ChatList::create());
 					    else mChatList->lUpdate();
+					    if (!mFunctionKeyList) setFunctionKeyList(FunctionKeyList::create());
+					    else mFunctionKeyList->lUpdate();
 					    disconnect(this, &App::coreStartedChanged, this, nullptr);
 				    } else {
 					    if (mAccountList) mAccountList->resetData();
@@ -789,6 +791,7 @@ void App::initCore() {
 					    if (mCallHistoryList) mCallHistoryList->resetData();
 					    if (mChatList) mChatList->resetData();
 					    if (mConferenceInfoList) mConferenceInfoList->resetData();
+					    if (mFunctionKeyList) mFunctionKeyList->resetData();
 				    }
 			    };
 			    if (mCoreStarted) {
@@ -1449,6 +1452,21 @@ void App::setCallList(QSharedPointer<CallList> data) {
 
 CallList *App::getCalls() const {
 	return mCallList.get();
+}
+
+QSharedPointer<FunctionKeyList> App::getFunctionKeyList() const {
+	return mFunctionKeyList;
+}
+
+void App::setFunctionKeyList(QSharedPointer<FunctionKeyList> data) {
+	if (mFunctionKeyList != data) {
+		mFunctionKeyList = data;
+		emit functionKeysChanged();
+	}
+}
+
+FunctionKeyList *App::getFunctionKeys() const {
+	return mFunctionKeyList.get();
 }
 
 QSharedPointer<SettingsCore> App::getSettings() const {

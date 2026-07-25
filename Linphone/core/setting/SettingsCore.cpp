@@ -126,6 +126,7 @@ SettingsCore::SettingsCore(QObject *parent) : QObject(parent) {
 	INIT_CORE_MEMBER(ShowPastMeetings, settingsModel)
 	INIT_CORE_MEMBER(DisableBroadcastFeature, settingsModel)
 	INIT_CORE_MEMBER(DisableCallForward, settingsModel)
+	INIT_CORE_MEMBER(DisableFunctionKeysFeature, settingsModel)
 	INIT_CORE_MEMBER(HideSettings, settingsModel)
 	INIT_CORE_MEMBER(HideAccountSettings, settingsModel)
 	INIT_CORE_MEMBER(DisableCallRecordings, settingsModel)
@@ -207,6 +208,7 @@ SettingsCore::SettingsCore(const SettingsCore &settingsCore) {
 	mShowPastMeetings = settingsCore.mShowPastMeetings;
 	mDisableBroadcastFeature = settingsCore.mDisableBroadcastFeature;
 	mDisableCallForward = settingsCore.mDisableCallForward;
+	mDisableFunctionKeysFeature = settingsCore.mDisableFunctionKeysFeature;
 	mHideSettings = settingsCore.mHideSettings;
 	mHideAccountSettings = settingsCore.mHideAccountSettings;
 	mHideFps = settingsCore.mHideFps;
@@ -322,6 +324,7 @@ void SettingsCore::reloadSettings() {
 	setShowPastMeetings(settingsModel->getShowPastMeetings());
 	setDisableBroadcastFeature(settingsModel->getDisableBroadcastFeature());
 	setDisableCallForward(settingsModel->getDisableCallForward());
+	setDisableFunctionKeysFeature(settingsModel->getDisableFunctionKeysFeature());
 
 	setHideSettings(settingsModel->getHideSettings());
 	setHideAccountSettings(settingsModel->getHideAccountSettings());
@@ -578,6 +581,8 @@ void SettingsCore::setSelf(QSharedPointer<SettingsCore> me) {
 	                           disableBroadcastFeature, DisableBroadcastFeature)
 	DEFINE_CORE_GETSET_CONNECT(mSettingsModelConnection, SettingsCore, SettingsModel, settingsModel, bool,
 	                           disableCallForward, DisableCallForward)
+	DEFINE_CORE_GETSET_CONNECT(mSettingsModelConnection, SettingsCore, SettingsModel, settingsModel, bool,
+	                           disableFunctionKeysFeature, DisableFunctionKeysFeature)
 	DEFINE_CORE_GETSET_CONNECT(mSettingsModelConnection, SettingsCore, SettingsModel, settingsModel, bool, hideSettings,
 	                           HideSettings)
 	DEFINE_CORE_GETSET_CONNECT(mSettingsModelConnection, SettingsCore, SettingsModel, settingsModel, bool,
@@ -705,6 +710,7 @@ void SettingsCore::reset(const SettingsCore &settingsCore) {
 	setShowPastMeetings(settingsCore.mShowPastMeetings);
 	setDisableBroadcastFeature(settingsCore.mDisableBroadcastFeature);
 	setDisableCallForward(settingsCore.mDisableCallForward);
+	setDisableFunctionKeysFeature(settingsCore.mDisableFunctionKeysFeature);
 	setHideSettings(settingsCore.mHideSettings);
 	setHideAccountSettings(settingsCore.mHideAccountSettings);
 	setHideFps(settingsCore.mHideFps);
@@ -1332,6 +1338,7 @@ void SettingsCore::writeIntoModel(std::shared_ptr<SettingsModel> model) const {
 	model->setShowPastMeetings(mShowPastMeetings);
 	model->setDisableBroadcastFeature(mDisableBroadcastFeature);
 	model->setDisableCallForward(mDisableCallForward);
+	model->setDisableFunctionKeysFeature(mDisableFunctionKeysFeature);
 	model->setHideSettings(mHideSettings);
 	model->setHideAccountSettings(mHideAccountSettings);
 	model->setHideFps(mHideFps);
@@ -1418,6 +1425,7 @@ void SettingsCore::writeFromModel(const std::shared_ptr<SettingsModel> &model) {
 	mShowPastMeetings = model->getShowPastMeetings();
 	mDisableBroadcastFeature = model->getDisableBroadcastFeature();
 	mDisableCallForward = model->getDisableCallForward();
+	mDisableFunctionKeysFeature = model->getDisableFunctionKeysFeature();
 	mHideSettings = model->getHideSettings();
 	mHideAccountSettings = model->getHideAccountSettings();
 	mHideFps = model->getHideFps();

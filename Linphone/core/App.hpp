@@ -30,6 +30,7 @@
 #include "core/chat/ChatList.hpp"
 #include "core/conference/ConferenceInfoList.hpp"
 #include "core/event-filter/LockEventFilter.hpp"
+#include "core/function-keys/FunctionKeyList.hpp"
 #include "core/setting/SettingsCore.hpp"
 #include "core/singleapplication/singleapplication.h"
 #include "model/cli/CliModel.hpp"
@@ -53,6 +54,7 @@ class App : public SingleApplication, public AbstractObject {
 	Q_PROPERTY(AccountGui *currentAccount READ getCurrentAccount NOTIFY currentAccountChanged)
 	Q_PROPERTY(CallList *calls READ getCalls NOTIFY callsChanged)
 	Q_PROPERTY(ChatList *chats READ getChats NOTIFY chatsChanged)
+	Q_PROPERTY(FunctionKeyList *functionKeys READ getFunctionKeys NOTIFY functionKeysChanged)
 	Q_PROPERTY(QString shortApplicationVersion READ getShortApplicationVersion CONSTANT)
 	Q_PROPERTY(QString qtVersion READ getQtVersion CONSTANT)
 	Q_PROPERTY(QString gitBranchName READ getGitBranchName CONSTANT)
@@ -187,6 +189,9 @@ public:
 	QSharedPointer<CallList> getCallList() const;
 	void setCallList(QSharedPointer<CallList> data);
 	Q_INVOKABLE CallList *getCalls() const;
+	QSharedPointer<FunctionKeyList> getFunctionKeyList() const;
+	void setFunctionKeyList(QSharedPointer<FunctionKeyList> data);
+	Q_INVOKABLE FunctionKeyList *getFunctionKeys() const;
 	QSharedPointer<SettingsCore> getSettings() const;
 
 	void onExitOnCloseChanged(); // Can be used for UniqueConnection
@@ -233,6 +238,7 @@ signals:
 	void accountsChanged();
 	void defaultAccountChanged();
 	void callsChanged();
+	void functionKeysChanged();
 	void currentDateChanged();
 	void currentChatChanged();
 	void conferenceInfosChanged();
@@ -277,6 +283,7 @@ private:
 	QSharedPointer<ChatList> mChatList;
 	QSharedPointer<CallList> mCallList;
 	QSharedPointer<CallHistoryList> mCallHistoryList;
+	QSharedPointer<FunctionKeyList> mFunctionKeyList;
 	QSharedPointer<SafeConnection<App, CoreModel>> mCoreModelConnection;
 	QSharedPointer<SafeConnection<App, CliModel>> mCliModelConnection;
 	bool mAutoStart = false;

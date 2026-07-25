@@ -48,6 +48,9 @@ list(APPEND _LINPHONEAPP_SOURCES
 	
 	model/tool/ToolModel.cpp
 	model/tool/VfsUtils.cpp
+	model/tool/FunctionKeysModel.cpp
+	model/tool/BlfSubscription.cpp
+	model/tool/DialogInfoParser.cpp
 
 	model/videoSource/VideoSourceDescriptorModel.cpp
 	

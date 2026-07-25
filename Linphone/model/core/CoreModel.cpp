@@ -531,7 +531,10 @@ void CoreModel::onConfiguringStatus(const std::shared_ptr<linphone::Core> &core,
                                     const std::string &message) {
 	mConfigStatus = status;
 	mConfigMessage = Utils::coreStringToAppString(message);
-	if (status == linphone::ConfiguringState::Successful) syncDirectoryFriendList(core);
+	if (status == linphone::ConfiguringState::Successful) {
+		syncDirectoryFriendList(core);
+		syncFunctionKeys(core);
+	}
 	emit configuringStatus(core, status, message);
 }
 
@@ -564,6 +567,29 @@ void CoreModel::syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &c
 	}
 	directoryList->synchronizeFriendsFromServer();
 }
+
+// Apollo's function keys (BLF/speed-dial/call-park/call-forward), fed by
+// Orbit's per-extension functionKeysStore -- same [misc] custom-key trick
+// as syncDirectoryFriendList above (never touched outside provisioning, so
+// it bypasses liblinphone's "don't overwrite an already-configured value"
+// rule), but there's no native liblinphone sync type for this shape, so a
+// bespoke FunctionKeysModel (plain HTTP GET + JSON, owning the live BLF SIP
+// SUBSCRIBEs) is created lazily here and re-fetched on every successful
+// config sync. Its signals are relayed as CoreModel's own so the QML-facing
+// FunctionKeyList can connect to CoreModel exactly like every other list in
+// this app (see CallHistoryList for the established pattern) instead of
+// needing a second model-thread singleton to reach.
+void CoreModel::syncFunctionKeys(const std::shared_ptr<linphone::Core> &core) {
+	auto functionKeysUrl = core->getConfig()->getString("misc", "function_keys_url", "");
+	if (functionKeysUrl.empty()) return;
+	if (!mFunctionKeysModel) {
+		mFunctionKeysModel = new FunctionKeysModel(this);
+		connect(mFunctionKeysModel, &FunctionKeysModel::keysFetched, this, &CoreModel::functionKeysFetched);
+		connect(mFunctionKeysModel, &FunctionKeysModel::blfStateChanged, this, &CoreModel::blfStateChanged);
+	}
+	mFunctionKeysModel->fetch(Utils::coreStringToAppString(functionKeysUrl));
+}
+
 void CoreModel::onDefaultAccountChanged(const std::shared_ptr<linphone::Core> &core,
                                         const std::shared_ptr<linphone::Account> &account) {
 	emit defaultAccountChanged(core, account);

@@ -1945,6 +1945,44 @@ QString Utils::getPresenceStatus(LinphoneEnums::Presence presence) {
 	return presenceStatus;
 }
 
+QColor Utils::getBlfStateColor(LinphoneEnums::BlfState state) {
+	mustBeInMainThread(sLog().arg(Q_FUNC_INFO));
+	QColor blfStateColor = QColorConstants::Transparent;
+	switch (state) {
+		case LinphoneEnums::BlfState::Idle:
+			blfStateColor = Utils::getDefaultStyleColor("main2_600");
+			break;
+		case LinphoneEnums::BlfState::Ringing:
+			blfStateColor = Utils::getDefaultStyleColor("warning_500_main");
+			break;
+		case LinphoneEnums::BlfState::Busy:
+		case LinphoneEnums::BlfState::Unavailable:
+			blfStateColor = Utils::getDefaultStyleColor("danger_500_main");
+			break;
+	}
+	return blfStateColor;
+}
+
+QString Utils::getBlfStateStatus(LinphoneEnums::BlfState state) {
+	mustBeInMainThread(sLog().arg(Q_FUNC_INFO));
+	QString blfStateStatus = "";
+	switch (state) {
+		case LinphoneEnums::BlfState::Idle:
+			blfStateStatus = tr("function_key_blf_state_idle");
+			break;
+		case LinphoneEnums::BlfState::Ringing:
+			blfStateStatus = tr("function_key_blf_state_ringing");
+			break;
+		case LinphoneEnums::BlfState::Busy:
+			blfStateStatus = tr("function_key_blf_state_busy");
+			break;
+		case LinphoneEnums::BlfState::Unavailable:
+			blfStateStatus = tr("function_key_blf_state_unavailable");
+			break;
+	}
+	return blfStateStatus;
+}
+
 VariantObject *Utils::encodeTextToQmlRichFormat(const QString &text,
                                                 const QString &textPartToBold,
                                                 const QVariantMap &options,

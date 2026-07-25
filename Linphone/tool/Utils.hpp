@@ -151,6 +151,8 @@ public:
 	Q_INVOKABLE static QColor getPresenceColor(LinphoneEnums::Presence presence);
 	Q_INVOKABLE static QUrl getPresenceIcon(LinphoneEnums::Presence presence);
 	Q_INVOKABLE static QString getPresenceStatus(LinphoneEnums::Presence presence);
+	Q_INVOKABLE static QColor getBlfStateColor(LinphoneEnums::BlfState state);
+	Q_INVOKABLE static QString getBlfStateStatus(LinphoneEnums::BlfState state);
 
 	Q_INVOKABLE static VariantObject *getCurrentCallChat(CallGui *call);
 	Q_INVOKABLE static VariantObject *getChatForAddress(QString address);

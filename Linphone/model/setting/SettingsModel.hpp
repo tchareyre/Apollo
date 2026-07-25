@@ -211,6 +211,7 @@ public:
 	DECLARE_GETSET(bool, disableChatFeature, DisableChatFeature)
 	DECLARE_GETSET(bool, disableBroadcastFeature, DisableBroadcastFeature)
 	DECLARE_GETSET(bool, disableCallForward, DisableCallForward)
+	DECLARE_GETSET(bool, disableFunctionKeysFeature, DisableFunctionKeysFeature)
 	DECLARE_GETSET(bool, hideSettings, HideSettings)
 	DECLARE_GETSET(bool, hideAccountSettings, HideAccountSettings)
 	DECLARE_GETSET(bool, hideFps, HideFps)

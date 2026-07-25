@@ -45,6 +45,9 @@ Control.TabBar {
         function onDisableChatFeatureChanged() {
             initButtons()
         }
+        function onDisableFunctionKeysFeatureChanged() {
+            initButtons()
+        }
     }
 	
     contentItem: ListView {

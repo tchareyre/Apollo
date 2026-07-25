@@ -47,6 +47,7 @@ void LinphoneEnums::registerMetaTypes() {
 	qRegisterMetaType<LinphoneEnums::TransportType>();
 	qRegisterMetaType<LinphoneEnums::VideoSourceScreenSharingType>();
 	qRegisterMetaType<LinphoneEnums::Presence>();
+	qRegisterMetaType<LinphoneEnums::BlfState>();
 	qmlRegisterUncreatableMetaObject(LinphoneEnums::staticMetaObject, Constants::MainQmlUri, 1, 0, "LinphoneEnums",
 	                                 "Only enums");
 }

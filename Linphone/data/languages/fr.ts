@@ -4532,6 +4532,50 @@ Expiration : %1</translation>
         <translation>Réunions</translation>
     </message>
     <message>
+        <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="180"/>
+        <source>bottom_navigation_function_keys_label</source>
+        <extracomment>&quot;Touches&quot;</extracomment>
+        <translation>Touches</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="182"/>
+        <source>open_function_keys_page_accessible_name</source>
+        <extracomment>&quot;Open function keys page&quot;</extracomment>
+        <translation>Ouvrir la page des touches de fonction</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="24"/>
+        <source>function_keys_page_title</source>
+        <extracomment>&quot;Touches de fonction&quot;</extracomment>
+        <translation>Touches de fonction</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="47"/>
+        <source>function_keys_page_empty</source>
+        <extracomment>&quot;Aucune touche de fonction configurée&quot;</extracomment>
+        <translation>Aucune touche de fonction configurée</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1955"/>
+        <source>function_key_blf_state_idle</source>
+        <translation>Disponible</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1958"/>
+        <source>function_key_blf_state_ringing</source>
+        <translation>En sonnerie</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1961"/>
+        <source>function_key_blf_state_busy</source>
+        <translation>Occupé</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1964"/>
+        <source>function_key_blf_state_unavailable</source>
+        <translation>Indisponible</translation>
+    </message>
+    <message>
         <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="171"/>
         <source>open_contact_page_accessible_name</source>
         <extracomment>&quot;Open meetings page&quot;</extracomment>

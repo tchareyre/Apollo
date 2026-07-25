@@ -16,6 +16,8 @@ list(APPEND _LINPHONEAPP_SOURCES
 	core/call-history/CallHistoryGui.cpp
 	core/call-history/CallHistoryList.cpp
 	core/call-history/CallHistoryProxy.cpp
+	core/function-keys/FunctionKeyCore.cpp
+	core/function-keys/FunctionKeyList.cpp
 	core/camera/CameraGui.cpp
 	core/camera/CameraDummy.cpp
 	core/chat/ChatCore.cpp

@@ -170,6 +170,17 @@ Item {
                         //: "Open meetings page"
                         "accessibilityLabel": qsTr("open_contact_page_accessible_name"),
                         "visible": !SettingsCpp.disableMeetingsFeature
+                    },
+                    {
+                        // squaresFour has no dedicated "-fill" selected variant yet -- same
+                        // fallback the shortcuts block below already uses for icons like this.
+                        "icon": AppIcons.squaresFour,
+                        "selectedIcon": AppIcons.squaresFour,
+                        //: "Touches"
+                        "label": qsTr("bottom_navigation_function_keys_label"),
+                        //: "Open function keys page"
+                        "accessibilityLabel": qsTr("open_function_keys_page_accessible_name"),
+                        "visible": !SettingsCpp.disableFunctionKeysFeature
                     }
                 ]
                 onCurrentIndexChanged: {
@@ -727,6 +738,17 @@ Item {
                                         }
                                     }
                                 }
+                            }
+                            onLoaded: {
+                                if(focusPageOnNextLoad) item.forceActiveFocus(Qt.TabFocusReason)
+                                focusPageOnNextLoad = false
+                            }
+                        }
+
+                        Loader {
+                            active: mainStackLayout.currentIndex === 4
+                            sourceComponent: FunctionKeysPage {
+                                id: functionKeysPage
                             }
                             onLoaded: {
                                 if(focusPageOnNextLoad) item.forceActiveFocus(Qt.TabFocusReason)

@@ -4532,6 +4532,50 @@ Expiration : %1</translation>
         <translation>Meetings</translation>
     </message>
     <message>
+        <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="180"/>
+        <source>bottom_navigation_function_keys_label</source>
+        <extracomment>&quot;Touches&quot;</extracomment>
+        <translation>Function keys</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="182"/>
+        <source>open_function_keys_page_accessible_name</source>
+        <extracomment>&quot;Open function keys page&quot;</extracomment>
+        <translation>Open function keys page</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="24"/>
+        <source>function_keys_page_title</source>
+        <extracomment>&quot;Touches de fonction&quot;</extracomment>
+        <translation>Function keys</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="47"/>
+        <source>function_keys_page_empty</source>
+        <extracomment>&quot;Aucune touche de fonction configurée&quot;</extracomment>
+        <translation>No function keys configured</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1955"/>
+        <source>function_key_blf_state_idle</source>
+        <translation>Available</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1958"/>
+        <source>function_key_blf_state_ringing</source>
+        <translation>Ringing</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1961"/>
+        <source>function_key_blf_state_busy</source>
+        <translation>Busy</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1964"/>
+        <source>function_key_blf_state_unavailable</source>
+        <translation>Unavailable</translation>
+    </message>
+    <message>
         <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="171"/>
         <source>open_contact_page_accessible_name</source>
         <extracomment>&quot;Open meetings page&quot;</extracomment>

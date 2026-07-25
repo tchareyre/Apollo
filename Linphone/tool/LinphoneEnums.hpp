@@ -271,6 +271,12 @@ Q_ENUM_NS(Presence);
 QString toString(Presence presence);
 Presence fromString(const QString &key);
 
+// BLF (Busy Lamp Field) watched-extension state, derived from a SIP
+// SUBSCRIBE/NOTIFY "dialog" event package exchange (RFC 4235) -- not a
+// liblinphone/SDK concept, purely application-level like Presence above.
+enum class BlfState { Idle, Ringing, Busy, Unavailable };
+Q_ENUM_NS(BlfState);
+
 enum class MagicSearchAggregation {
 	Friend = int(linphone::MagicSearch::Aggregation::Friend),
 	None = int(linphone::MagicSearch::Aggregation::None)

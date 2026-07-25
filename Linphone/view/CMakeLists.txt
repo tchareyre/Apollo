@@ -83,6 +83,7 @@ list(APPEND _LINPHONEAPP_QML_FILES
 	view/Control/Display/Contact/AllContactListView.qml
 	view/Control/Display/Contact/Voicemail.qml
 	view/Control/Display/Meeting/MeetingListView.qml
+	view/Control/Display/FunctionKeys/FunctionKeyItem.qml
 	view/Control/Display/Participant/ParticipantDeviceListView.qml
 	view/Control/Display/Participant/ParticipantInfoListView.qml
 	view/Control/Display/Participant/ParticipantListView.qml
@@ -183,6 +184,7 @@ list(APPEND _LINPHONEAPP_QML_FILES
 	view/Page/Main/Contact/ContactPage.qml
 	view/Page/Main/Help/HelpPage.qml
 	view/Page/Main/Meeting/MeetingPage.qml
+	view/Page/Main/FunctionKeys/FunctionKeysPage.qml
 	view/Page/Main/Record/RecordPage.qml
 	view/Page/Main/Start/WelcomePage.qml
 

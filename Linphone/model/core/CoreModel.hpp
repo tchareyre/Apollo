@@ -36,6 +36,7 @@
 #include "model/listener/Listener.hpp"
 #include "model/logger/LoggerModel.hpp"
 #include "model/search/MagicSearchModel.hpp"
+#include "model/tool/FunctionKeysModel.hpp"
 #include "tool/AbstractObject.hpp"
 
 // =============================================================================
@@ -104,18 +105,22 @@ signals:
 	void timeoutTimerStarted();
 	void timeoutTimerStopped();
 	void oidcRequestFailed(QString error);
+	void functionKeysFetched(QList<FunctionKeyData> keys);
+	void blfStateChanged(QString target, LinphoneEnums::BlfState state);
 
 private:
 	QString mConfigPath;
 	QTimer *mIterateTimer = nullptr;
 	QMap<QString, OIDCModel *> mOpenIdConnections;
 	std::shared_ptr<MagicSearchModel> mMagicSearch;
+	FunctionKeysModel *mFunctionKeysModel = nullptr;
 	bool mStarted = false;
 	bool mCheckVersionRequestedByUser = false;
 
 	void setPathBeforeCreation();
 	void setPathAfterStart();
 	void syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &core);
+	void syncFunctionKeys(const std::shared_ptr<linphone::Core> &core);
 
 	static std::shared_ptr<CoreModel> gCoreModel;
 

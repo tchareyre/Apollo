@@ -1008,6 +1008,7 @@ int SettingsModel::getTextMessageFontSize() const {
 void SettingsModel::notifyConfigReady(){
 	DEFINE_NOTIFY_CONFIG_READY(disableChatFeature, DisableChatFeature)
 	DEFINE_NOTIFY_CONFIG_READY(disableMeetingsFeature, DisableMeetingsFeature)
+	DEFINE_NOTIFY_CONFIG_READY(disableFunctionKeysFeature, DisableFunctionKeysFeature)
 	DEFINE_NOTIFY_CONFIG_READY(hideSettings,HideSettings)
 	DEFINE_NOTIFY_CONFIG_READY(hideAccountSettings, HideAccountSettings)
 	DEFINE_NOTIFY_CONFIG_READY(hideFps, HideFps)
@@ -1046,6 +1047,13 @@ DEFINE_GETSET_CONFIG(SettingsModel,
 						"disable_broadcast_feature",
 						true)
 DEFINE_GETSET_CONFIG(SettingsModel, bool, Bool, disableCallForward, DisableCallForward, "disable_call_forward", true)
+DEFINE_GETSET_CONFIG(SettingsModel,
+						bool,
+						Bool,
+						disableFunctionKeysFeature,
+						DisableFunctionKeysFeature,
+						"disable_function_keys_feature",
+						false)
 
 DEFINE_GETSET_CONFIG(SettingsModel, bool, Bool, hideSettings, HideSettings, "hide_settings", false)
 DEFINE_GETSET_CONFIG(
