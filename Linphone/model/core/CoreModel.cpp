@@ -541,30 +541,38 @@ void CoreModel::onConfiguringStatus(const std::shared_ptr<linphone::Core> &core,
 // Orbit's shared directory has no CardDAV server to point liblinphone's
 // native CardDAV client at -- it's exposed as a plain vCard4 list instead
 // (FriendList::Type::VCard4, a simple authenticated GET returning
-// text/vcard, which the org's remote-provisioning config can point at
-// directly via a custom [misc] key, unlike the SIP account section this
-// key isn't protected by liblinphone's "don't touch existing values" rule
-// since it's never set outside provisioning -- so this runs, and
-// re-syncs the same list, on every app startup, keeping the directory
-// current with whatever the admin has in Orbit.
+// text/vcard, which the org's remote-provisioning config points at through a
+// custom [misc] key) -- so this runs, and re-syncs the same list, on every
+// app startup, keeping the directory current with whatever the admin has in
+// Orbit.
+//
+// The list is identified by its TYPE, never by its URL. Matching on the URL
+// looked natural but crashed the app the first time the URL changed (an
+// access-token rotation is enough, and so is a change of server address or of
+// the device's identifier): the old list was no longer recognised, a second
+// one was created under the same display name, and the UNIQUE constraint on
+// friends_list.name aborted the insert mid-way, leaving a half-built list that
+// took the whole app down a couple of seconds later. Only Apollo ever creates
+// a vCard4 list, so the first one found is ours by construction; its URL is
+// simply refreshed in place, and any extra one left behind by that old bug is
+// dropped.
 void CoreModel::syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &core) {
 	auto directoryUrl = core->getConfig()->getString("misc", "directory_vcard_url", "");
 	if (directoryUrl.empty()) return;
 	std::shared_ptr<linphone::FriendList> directoryList;
 	for (const auto &list : core->getFriendsLists()) {
-		if (list->getType() == linphone::FriendList::Type::VCard4 && list->getUri() == directoryUrl) {
-			directoryList = list;
-			break;
-		}
+		if (list->getType() != linphone::FriendList::Type::VCard4) continue;
+		if (!directoryList) directoryList = list;
+		else core->removeFriendList(list);
 	}
 	if (!directoryList) {
 		directoryList = core->createFriendList();
 		directoryList->setType(linphone::FriendList::Type::VCard4);
-		directoryList->setUri(directoryUrl);
 		directoryList->setDisplayName("Annuaire Orbit");
 		directoryList->enableDatabaseStorage(true);
 		core->addFriendList(directoryList);
 	}
+	if (directoryList->getUri() != directoryUrl) directoryList->setUri(directoryUrl);
 	directoryList->synchronizeFriendsFromServer();
 }
 
