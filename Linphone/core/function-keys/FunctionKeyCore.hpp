@@ -32,10 +32,13 @@ public:
 		return mType == QLatin1String("blf");
 	}
 
-	// Every function-key type is a plain one-tap call to its target -- BLF
-	// carries live state on top, call-park/speed-dial/call-forward don't
-	// need any special-casing here (see ToolModel::createCall, which
-	// resolves a bare extension/number the same way the in-app dialer does).
+	// One tap dials mDialTarget (see ToolModel::createCall, which resolves a
+	// bare extension/number the same way the in-app dialer does). Which
+	// digits that is comes from Orbit, not from here -- a "callForward" key
+	// dials the enable-forwarding code plus its destination, not the
+	// destination itself. A BLF key whose extension is currently ringing
+	// dials mPickupTarget instead, so the press intercepts the call the way
+	// a hardware BLF key does rather than adding a second ring.
 	Q_INVOKABLE void call() const;
 
 	void setBlfState(LinphoneEnums::BlfState state);
@@ -44,6 +47,8 @@ public:
 	QString mType;
 	QString mTarget;
 	QString mLabel;
+	QString mDialTarget;
+	QString mPickupTarget;
 	LinphoneEnums::BlfState mBlfState = LinphoneEnums::BlfState::Idle;
 
 signals:

@@ -26,6 +26,14 @@ struct FunctionKeyData {
 	QString type;
 	QString target;
 	QString label;
+	// What to actually dial, resolved by Orbit (provisioningStore.apolloKeyDial)
+	// so the feature codes stay on the server, exactly as they are for a
+	// hardware phone. Differs from `target` for "callForward", which must dial
+	// the enable-forwarding code followed by the destination. `pickupTarget` is
+	// set on BLF keys only and is dialed instead while the watched extension is
+	// ringing, which is how a press intercepts the call.
+	QString dialTarget;
+	QString pickupTarget;
 };
 Q_DECLARE_METATYPE(FunctionKeyData)
 

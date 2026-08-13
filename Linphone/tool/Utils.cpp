@@ -36,6 +36,7 @@
 #include "core/payload-type/DownloadablePayloadTypeCore.hpp"
 #include "core/recorder/RecorderGui.hpp"
 #include "model/call-history/CallHistoryModel.hpp"
+#include "model/core/CoreModel.hpp"
 #include "model/object/VariantObject.hpp"
 #include "model/tool/ToolModel.hpp"
 #include "tool/providers/AvatarProvider.hpp"
@@ -213,6 +214,38 @@ void Utils::createCall(const QString &sipAddress,
 			//: "L'appel n'a pas pu être créé"
 			if (errorMessage.isEmpty()) errorMessage = tr("information_popup_call_not_created_message");
 			showInformationPopup(tr("information_popup_error_title"), errorMessage, false);
+		}
+	});
+}
+
+// A call-park key has to hand the conversation over to the parking extension,
+// not place a second call to it: dialing 700 while talking would only put the
+// correspondent on hold and park nobody. A blind transfer is what a desk
+// phone's park key sends, and Asterisk then runs Park() on the transferred
+// leg, so the correspondent lands in a parking space and hears the music.
+void Utils::transferCurrentCallTo(const QString &sipAddress) {
+	lInfo() << "[Utils] transfer current call to :" << sipAddress;
+	App::postModelAsync([sipAddress]() {
+		auto core = CoreModel::getInstance()->getCore();
+		auto call = core ? core->getCurrentCall() : nullptr;
+		if (!call) {
+			// Nothing in progress: behave like every other function key. Back
+			// to the core thread rather than calling ToolModel directly, so
+			// the call still picks up the media-encryption setting.
+			App::postCoreAsync([sipAddress]() { Utils::createCall(sipAddress); });
+			return;
+		}
+		auto address = ToolModel::interpretUrl(sipAddress);
+		if (!address || call->transferTo(address) == -1) {
+			lWarning() << "[Utils] unable to transfer current call to :" << sipAddress;
+			// Reuses the existing failed-transfer string rather than adding a
+			// key: the .ts files of the languages we don't maintain are never
+			// backfilled, and an unknown key shows up raw on screen. It lives
+			// in the CallsWindow context, hence translate() and not tr().
+			App::postCoreAsync([]() {
+				showInformationPopup(tr("information_popup_error_title"),
+				                     QCoreApplication::translate("CallsWindow", "call_transfer_failed_toast"), false);
+			});
 		}
 	});
 }

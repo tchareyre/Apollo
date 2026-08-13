@@ -92,6 +92,11 @@ void FunctionKeysModel::onReplyFinished() {
 		key.type = obj.value("type").toString();
 		key.target = obj.value("target").toString();
 		key.label = obj.value("label").toString();
+		// Fall back to the bare target: an Orbit older than these two fields
+		// still serves usable keys, and that is exactly what this app did
+		// before they existed.
+		key.dialTarget = obj.value("dialTarget").toString(key.target);
+		key.pickupTarget = obj.value("pickupTarget").toString();
 		keys.append(key);
 	}
 	std::sort(keys.begin(), keys.end(),

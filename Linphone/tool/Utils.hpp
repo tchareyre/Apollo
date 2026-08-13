@@ -79,6 +79,10 @@ public:
 	           LinphoneEnums::MediaEncryption mediaEncryption = LinphoneEnums::MediaEncryption::None,
 	           const QString &prepareTransfertAddress = "",
 	           const QHash<QString, QString> &headers = {});
+	// Hands the call in progress over to an address by blind transfer, and
+	// falls back to createCall when there is no call to hand over. Used by
+	// the call-park function key -- see FunctionKeyCore::call().
+	Q_INVOKABLE static void transferCurrentCallTo(const QString &sipAddress);
 	Q_INVOKABLE static void createGroupCall(QString subject, const std::list<QString> &participantAddresses);
 	Q_INVOKABLE static void setupConference(ConferenceInfoGui *confGui);
 	Q_INVOKABLE static QQuickWindow *getMainWindow();
