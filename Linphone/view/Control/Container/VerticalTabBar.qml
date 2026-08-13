@@ -99,6 +99,15 @@ Control.TabBar {
             topInset:  Utils.getSizeWithScreenRatio(32)
 			hoverEnabled: true
 			visible: modelData?.visible != undefined ? modelData.visible : true
+			// The ListView lays its items out by height and an invisible one keeps its
+			// own, so a disabled tab (chat, meetings) would leave a hole in the bar.
+			// Collapsed by a one-shot assignment rather than a binding on implicitHeight:
+			// that implicit height comes from the content item, which the control sizes
+			// back from its own height, and the resulting loop flattens every tab. The
+			// delegates are rebuilt from scratch by initButtons() whenever one of these
+			// features is toggled, so a one-shot value is enough. Same trick as the
+			// hidden rows of AbstractSettingsLayout.
+			Component.onCompleted: if (!visible) height = 0
 			onVisibleChanged: mainItem.updateVisibleCount()
 			text: modelData.accessibilityLabel
 			property bool keyboardFocus: FocusHelper.keyboardFocus

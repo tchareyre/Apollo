@@ -55,6 +55,12 @@ ec_filter=MSWebRTCAEC
 
 [ui]
 assistant_supports_phone_numbers/readonly=0
+# Orbit runs neither a Flexisip chat server nor an audio/video conference server, so both
+# features would only ever lead to dead ends: hide them everywhere (tabs, contact actions,
+# settings pages) rather than let a user find them. Meetings are additionally re-enabled by
+# SettingsModel on its own if an account ever advertises a conference factory address.
+disable_chat_feature=1
+disable_meetings_feature=1
 use_qrcode=0
 
 [video]
