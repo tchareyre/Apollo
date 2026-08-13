@@ -62,6 +62,9 @@ install(TARGETS ${TARGET_NAME}
 )
 
 install(FILES "${CMAKE_SOURCE_DIR}/Linphone/data/config/linphonerc-factory" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/${EXECUTABLE_NAME}")
+# GPLv3 s.4: leave a copy of the licence on disk next to the installed program, not only
+# on the installer's licence page and in the app's own About screen.
+install(FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/${EXECUTABLE_NAME}")
 
 set(LINPHONE_QML_DIR "${CMAKE_SOURCE_DIR}/Linphone/view")
 set(QT_PATH "${Qt6Core_DIR}/../../..")

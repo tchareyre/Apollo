@@ -79,6 +79,18 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
+# GPLv3 s.6: the source link shipped inside the binary must lead to the exact revision
+# this build was made from, not just to the head of the repository. Empty when git is
+# unavailable, in which case application_info.cmake falls back to the repository URL.
+set(APPLICATION_SOURCE_REVISION)
+execute_process(
+    COMMAND git rev-parse HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE APPLICATION_SOURCE_REVISION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
+)
+
 include(application_info.cmake)
 string(TIMESTAMP CURRENT_YEAR "%Y")
 if(NOT APPLICATION_START_LICENCE OR "${CURRENT_YEAR}" STREQUAL "${APPLICATION_START_LICENCE}")
@@ -173,6 +185,14 @@ qt6_add_qml_module(Linphone
 )
 
 qt6_add_resources(Linphone "resources" PREFIX "/" FILES ${_LINPHONEAPP_RC_FILES})
+
+# GPLv3 s.4 asks for a copy of the licence to be handed out with the program: embed the
+# text in the binary so the About screen can show it offline (a link to gnu.org is not a
+# copy). Copied into the build tree first because qt6_add_resources needs it under BASE.
+configure_file("${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt" COPYONLY)
+qt6_add_resources(Linphone "licence" PREFIX "/" BASE "${CMAKE_CURRENT_BINARY_DIR}"
+	FILES "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt")
+
 set_property(TARGET Linphone PROPERTY POSITION_INDEPENDENT_CODE ON)   #Need by Qt
 
 ################################################################

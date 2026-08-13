@@ -46,6 +46,7 @@
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QDesktopServices>
+#include <QFile>
 #include <QFileInfo>
 #include <QHostAddress>
 #include <QImageReader>
@@ -168,6 +169,15 @@ QString Utils::getInitials(const QString &username, int letterCount) {
 		}
 	}
 	return QLocale().toUpper(initials.join(""));
+}
+
+QString Utils::getLicenceText() {
+	QFile licence(":/LICENSE.txt");
+	if (!licence.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		lWarning() << "Could not open the embedded licence text";
+		return QString();
+	}
+	return QString::fromUtf8(licence.readAll());
 }
 
 VariantObject *Utils::findLocalAccountByAddress(const QString &address) {

@@ -158,6 +158,7 @@ list(APPEND _LINPHONEAPP_QML_FILES
 	view/Page/Layout/Settings/MeetingsSettingsLayout.qml
 	view/Page/Layout/Settings/ContactsSettingsProviderLayout.qml
 	view/Page/Layout/Settings/DebugSettingsLayout.qml
+	view/Page/Layout/Settings/LicenceLayout.qml
 	view/Page/Layout/Settings/LdapSettingsLayout.qml
 	view/Page/Layout/Settings/CarddavSettingsLayout.qml
 	view/Page/Layout/Settings/ChatSettingsLayout.qml

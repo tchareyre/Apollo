@@ -68,6 +68,10 @@ public:
 	Q_INVOKABLE static QString getFamilyNameFromFullName(const QString &fullName);
 	Q_INVOKABLE static QString getInitials(const QString &username, int letterCount = 2); // Support UTF32
 	Q_INVOKABLE static VariantObject *findLocalAccountByAddress(const QString &address);
+	// Full text of the GPLv3, compiled into the binary so the About screen can show it
+	// without a network (GPLv3 s.4 wants a copy shipped with the program). Read here
+	// rather than with QML's XMLHttpRequest, which comes back empty on a qrc: URL.
+	Q_INVOKABLE static QString getLicenceText();
 
 	Q_INVOKABLE static void
 	createCall(const QString &sipAddress,

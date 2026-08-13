@@ -111,14 +111,18 @@ AbstractMainPage {
 				}
 			}
 			HelpIconLabelButton {
+				id: licence
 				Layout.fillWidth: true
 				iconSource: AppIcons.license
+				arrowImageVisible: true
                 //: "Licences GPLv3"
                 title: qsTr("help_about_gpl_licence_title")
 				subTitle: (copyrightRangeDate || applicationCopyrightHolder ? '\u00A9 ': '') + (copyrightRangeDate ? copyrightRangeDate : '')+ (applicationCopyrightHolder ? ' ' + applicationCopyrightHolder : '')
 				onClicked: {
+					// Opens the licence text embedded in the app rather than gnu.org: GPLv3
+					// s.4 wants a copy shipped with the program, readable without network.
 					rightPanelStackView.clear()
-					Qt.openUrlExternally(applicationLicenceUrl)
+					rightPanelStackView.push("qrc:/qt/qml/Linphone/view/Page/Layout/Settings/LicenceLayout.qml", { titleText: licence.title, container: rightPanelStackView })
 				}
 			}
 			HelpIconLabelButton {
@@ -134,6 +138,9 @@ AbstractMainPage {
 			}
 			HelpIconLabelButton {
 				Layout.fillWidth: true
+				// Upstream's Weblate project translates Linphone, not Apollo: sending a
+				// user there would have them contribute to someone else's product.
+				visible: ConstantsCpp.TranslationUrl.length > 0
 				iconSource: AppIcons.world
 				titleLineCount: 2
                 //: "Contribuer à la traduction de %1"

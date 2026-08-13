@@ -749,6 +749,11 @@ void App::initCore() {
 #else
 				mEngine->rootContext()->setContextProperty("applicationModificationNotice", "");
 #endif
+#ifdef APPLICATION_TRADEMARK_NOTICE
+			    mEngine->rootContext()->setContextProperty("applicationTrademarkNotice", APPLICATION_TRADEMARK_NOTICE);
+#else
+				mEngine->rootContext()->setContextProperty("applicationTrademarkNotice", "");
+#endif
 #ifdef APPLICATION_SOURCE_URL
 			    mEngine->rootContext()->setContextProperty("applicationSourceUrl", APPLICATION_SOURCE_URL);
 #else

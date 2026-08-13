@@ -1,3 +1,26 @@
+# Apollo
+
+Apollo is the softphone of [Orbit PBX](https://orbit-pbx.fr). It is **a modified version of
+[linphone-desktop](https://gitlab.linphone.org/BC/public/linphone-desktop) by Belledonne
+Communications**, forked in July 2026 and modified by Orbit since then.
+
+Changes made by Orbit, relative to upstream: application name, icon and colour palette; Inter/Lexend
+fonts; removal of the Linphone-account login path; automatic synchronisation of the Orbit shared
+directory as a contact list; real-time BLF and function keys (speed dial, call park, call forward);
+chat and meetings hidden, as Orbit hosts neither a Flexisip nor a conference server.
+
+Apollo is distributed under the **GNU General Public License v3** (see `LICENSE.txt`), the same free
+licence upstream offers. Belledonne Communications remains the copyright holder of the original work;
+the notices in the application's About screen, and the copy of the licence shipped with every build,
+are there to say so.
+
+"Linphone" is a trademark of Belledonne Communications. Apollo is an independent fork and is neither
+affiliated with nor endorsed by Belledonne Communications.
+
+The rest of this file is upstream's own documentation, kept as is.
+
+---
+
 # Linphone Desktop
 
 Linphone is an open source softphone for voice and video over IP calling and instant messaging.
