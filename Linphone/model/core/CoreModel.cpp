@@ -598,6 +598,11 @@ void CoreModel::syncFunctionKeys(const std::shared_ptr<linphone::Core> &core) {
 	mFunctionKeysModel->fetch(Utils::coreStringToAppString(functionKeysUrl));
 }
 
+void CoreModel::replayFunctionKeys() {
+	if (!mFunctionKeysModel) return;
+	emit functionKeysFetched(mFunctionKeysModel->getKeys());
+}
+
 void CoreModel::onDefaultAccountChanged(const std::shared_ptr<linphone::Core> &core,
                                         const std::shared_ptr<linphone::Account> &account) {
 	emit defaultAccountChanged(core, account);

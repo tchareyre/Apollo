@@ -47,7 +47,7 @@ FocusScope {
 			Text {
 				Layout.fillWidth: true
 				text: mainItem.functionKey ? mainItem.functionKey.target : ""
-				color: DefaultStyle.main2_500
+				color: DefaultStyle.main2_500_main
 				font: Typography.p2
 				elide: Text.ElideRight
 			}

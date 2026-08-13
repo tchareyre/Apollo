@@ -51,4 +51,10 @@ void FunctionKeyList::setSelf(QSharedPointer<FunctionKeyList> me) {
 			                                     }
 		                                     });
 	                                     });
+
+	// The keys are fetched while the core configures itself, which is over
+	// before this list exists: ask for what has already arrived instead of
+	// leaving the page empty until the next periodic re-fetch, 45 minutes
+	// later.
+	mModelConnection->invokeToModel([]() { CoreModel::getInstance()->replayFunctionKeys(); });
 }

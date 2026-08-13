@@ -4037,6 +4037,21 @@ Expiration : %1</translation>
     </message>
 </context>
 <context>
+    <name>FunctionKeysPage</name>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="24"/>
+        <source>function_keys_page_title</source>
+        <extracomment>&quot;Touches de fonction&quot;</extracomment>
+        <translation>Function keys</translation>
+    </message>
+    <message>
+        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="47"/>
+        <source>function_keys_page_empty</source>
+        <extracomment>&quot;Aucune touche de fonction configurée&quot;</extracomment>
+        <translation>No function keys configured</translation>
+    </message>
+</context>
+<context>
     <name>GroupChatInfoParticipants</name>
     <message>
         <location filename="../../view/Page/Layout/Chat/GroupChatInfoParticipants.qml" line="204"/>
@@ -4548,38 +4563,6 @@ Expiration : %1</translation>
         <source>open_function_keys_page_accessible_name</source>
         <extracomment>&quot;Open function keys page&quot;</extracomment>
         <translation>Open function keys page</translation>
-    </message>
-    <message>
-        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="24"/>
-        <source>function_keys_page_title</source>
-        <extracomment>&quot;Touches de fonction&quot;</extracomment>
-        <translation>Function keys</translation>
-    </message>
-    <message>
-        <location filename="../../view/Page/Main/FunctionKeys/FunctionKeysPage.qml" line="47"/>
-        <source>function_keys_page_empty</source>
-        <extracomment>&quot;Aucune touche de fonction configurée&quot;</extracomment>
-        <translation>No function keys configured</translation>
-    </message>
-    <message>
-        <location filename="../../tool/Utils.cpp" line="1955"/>
-        <source>function_key_blf_state_idle</source>
-        <translation>Available</translation>
-    </message>
-    <message>
-        <location filename="../../tool/Utils.cpp" line="1958"/>
-        <source>function_key_blf_state_ringing</source>
-        <translation>Ringing</translation>
-    </message>
-    <message>
-        <location filename="../../tool/Utils.cpp" line="1961"/>
-        <source>function_key_blf_state_busy</source>
-        <translation>Busy</translation>
-    </message>
-    <message>
-        <location filename="../../tool/Utils.cpp" line="1964"/>
-        <source>function_key_blf_state_unavailable</source>
-        <translation>Unavailable</translation>
     </message>
     <message>
         <location filename="../../view/Page/Layout/Main/MainLayout.qml" line="171"/>
@@ -6579,6 +6562,26 @@ To enable them in a commercial project, please contact us.</translation>
 </context>
 <context>
     <name>Utils</name>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1955"/>
+        <source>function_key_blf_state_idle</source>
+        <translation>Available</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1958"/>
+        <source>function_key_blf_state_ringing</source>
+        <translation>Ringing</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1961"/>
+        <source>function_key_blf_state_busy</source>
+        <translation>Busy</translation>
+    </message>
+    <message>
+        <location filename="../../tool/Utils.cpp" line="1964"/>
+        <source>function_key_blf_state_unavailable</source>
+        <translation>Unavailable</translation>
+    </message>
     <message numerus="yes">
         <location filename="../../tool/Utils.cpp" line="2296"/>
         <source>nSeconds</source>
@@ -8246,6 +8249,44 @@ Error in the chat</extracomment>
         <location filename="../../view/Control/Tool/Helper/utils.js" line="805"/>
         <source>okButton</source>
         <translation>Ok</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsNotificationBackend</name>
+    <message>
+        <source>incoming_call</source>
+        <translation>Incoming call</translation>
+    </message>
+    <message>
+        <source>accept_button</source>
+        <translation>Accept</translation>
+    </message>
+    <message>
+        <source>decline_button</source>
+        <translation>Decline</translation>
+    </message>
+    <message>
+        <source>info_popup_error_title</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <source>info_popup_error_creating_notification</source>
+        <translation>Error creating notification</translation>
+    </message>
+</context>
+<context>
+    <name>SysTrayNotificationBackend</name>
+    <message>
+        <source>incoming_call</source>
+        <translation>Incoming call</translation>
+    </message>
+    <message>
+        <source>accept_button</source>
+        <translation>Accept</translation>
+    </message>
+    <message>
+        <source>decline_button</source>
+        <translation>Decline</translation>
     </message>
 </context>
 </TS>

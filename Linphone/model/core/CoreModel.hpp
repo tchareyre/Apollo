@@ -77,6 +77,12 @@ public:
 	void checkForUpdate(const std::string &applicationVersion, bool requestedByUser = false);
 	bool isCheckVersionRequestedByUser() const;
 
+	// Re-emits functionKeysFetched with the keys already in hand. The keys are
+	// fetched once while the core is configuring, long before the QML list
+	// exists, so a list built later would otherwise stay empty until the next
+	// periodic re-fetch -- 45 minutes of an empty "Touches" page.
+	void replayFunctionKeys();
+
 	bool mEnd = false;
 	linphone::ConfiguringState mConfigStatus;
 	QString mConfigMessage;

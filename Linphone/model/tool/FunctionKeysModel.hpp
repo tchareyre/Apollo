@@ -54,6 +54,11 @@ public:
 	~FunctionKeysModel();
 
 	void fetch(const QString &url);
+	// Last keys received, for a list built after the one-shot keysFetched
+	// signal has already gone by -- see CoreModel::replayFunctionKeys.
+	const QList<FunctionKeyData> &getKeys() const {
+		return mKeys;
+	}
 
 signals:
 	void keysFetched(QList<FunctionKeyData> keys);

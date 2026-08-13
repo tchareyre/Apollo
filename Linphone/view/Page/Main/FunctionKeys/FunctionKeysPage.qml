@@ -51,7 +51,7 @@ AbstractMainPage {
 				Layout.alignment: Qt.AlignHCenter
 				//: "Aucune touche de fonction configurée"
 				text: qsTr("function_keys_page_empty")
-				color: DefaultStyle.main2_500
+				color: DefaultStyle.main2_500_main
 			}
 			Item { Layout.fillHeight: true }
 		}
