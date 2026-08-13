@@ -65,14 +65,23 @@ public:
 	static constexpr char DefaultContactParametersOnRemove[] = "message-expires=0";
 	static constexpr int DefaultExpires = 600;
 	static constexpr int DefaultPublishExpires = 120;
-	static constexpr char DownloadUrl[] = "https://www.linphone.org/technical-corner/linphone";
-	static constexpr char VersionCheckReleaseUrl[] = "https://download.linphone.org/releases";
-	static constexpr char VersionCheckNightlyUrl[] = "https://download.linphone.org/snapshots";
+	// Orbit's own addresses: an Apollo user must never be sent to Belledonne's
+	// site, least of all by the update check, which would otherwise compare
+	// Apollo's version against Linphone's releases and offer their installer.
+	// The update check appends "/<platform>/RELEASE" and expects a body of
+	// "<version>\tab<download url>" (see the SDK's coreapi/update_check.c).
+	// There is no nightly channel, so both point at the same feed.
+	// "www." is not cosmetic here: the apex orbit-pbx.fr has no A/AAAA record,
+	// only www does, so a bare-domain URL simply fails to resolve.
+	static constexpr char DownloadUrl[] = "https://www.orbit-pbx.fr/apollo/";
+	static constexpr char VersionCheckReleaseUrl[] = "https://www.orbit-pbx.fr/apollo";
+	static constexpr char VersionCheckNightlyUrl[] = "https://www.orbit-pbx.fr/apollo";
 	static constexpr char PasswordRecoveryUrl[] = "https://subscribe.linphone.org/recovery/email";
-	static constexpr char CguUrl[] = "https://www.linphone.org/en/terms-of-use/";
-	static constexpr char PrivatePolicyUrl[] = "https://www.linphone.org/en/privacy-policy/";
-	static constexpr char ContactUrl[] = "https://www.linphone.org/contact";
-	static constexpr char TranslationUrl[] = "https://weblate.linphone.org/projects/linphone-desktop/";
+	static constexpr char CguUrl[] = "https://www.orbit-pbx.fr/mentions-legales.html";
+	static constexpr char PrivatePolicyUrl[] = "https://www.orbit-pbx.fr/mentions-legales.html";
+	static constexpr char ContactUrl[] = "https://www.orbit-pbx.fr/contact.html";
+	// Apollo is not on Belledonne's Weblate: the row that used this is hidden.
+	static constexpr char TranslationUrl[] = "";
 
 	static constexpr int MaxMosaicParticipants =
 	    6; // From 7, the mosaic quality will be limited to avoid useless computations
