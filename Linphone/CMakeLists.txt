@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Linphone VERSION 6.2.0 LANGUAGES CXX)
+# Apollo numbers its own releases, starting at 1.0.0; upstream's 6.2.0 is the fork point.
+# This must stay equal to the major.minor of the git tag being built, which bc_compute_full_version
+# checks, and it is what ends up in the package name and in the update feed.
+project(Linphone VERSION 1.0.0 LANGUAGES CXX)
 
 ################################################################
 #						PACKAGES
