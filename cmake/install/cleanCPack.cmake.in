@@ -71,8 +71,10 @@ if(APPLE)
 		execute_process(COMMAND codesign --force --deep --sign "-" "${CPACK_TEMPORARY_INSTALL_DIRECTORY}/@APPLICATION_NAME@.app" )#If not code signed, app can crash because of APPLE on "Code Signature Invalid" (spotted for ARM64)
 	endif()
 elseif(WIN32)
-	message(STATUS "Execute : @DEPLOYQT_PROGRAM@ ${CPACK_TEMPORARY_INSTALL_DIRECTORY}/@CMAKE_INSTALL_BINDIR@/@EXECUTABLE_NAME@.exe --qmldir=@LINPHONE_QML_DIR@ --verbose=0 --no-compiler-runtime --pdb")
-	execute_process(COMMAND @DEPLOYQT_PROGRAM@ "${CPACK_TEMPORARY_INSTALL_DIRECTORY}/@CMAKE_INSTALL_BINDIR@/@EXECUTABLE_NAME@.exe" "--qmldir=@LINPHONE_QML_DIR@" "--verbose=0" "--no-compiler-runtime" "--pdb")
+	# No --pdb: the debug symbols windeployqt would copy are deleted a few lines below anyway,
+	# and they weigh several hundred megabytes in an installer end users have to download.
+	message(STATUS "Execute : @DEPLOYQT_PROGRAM@ ${CPACK_TEMPORARY_INSTALL_DIRECTORY}/@CMAKE_INSTALL_BINDIR@/@EXECUTABLE_NAME@.exe --qmldir=@LINPHONE_QML_DIR@ --verbose=0 --no-compiler-runtime")
+	execute_process(COMMAND @DEPLOYQT_PROGRAM@ "${CPACK_TEMPORARY_INSTALL_DIRECTORY}/@CMAKE_INSTALL_BINDIR@/@EXECUTABLE_NAME@.exe" "--qmldir=@LINPHONE_QML_DIR@" "--verbose=0" "--no-compiler-runtime")
 	# --plugindir "${CMAKE_CURRENT_BINARY_DIR}/winqt/plugins"
 	# --dir "${CMAKE_CURRENT_BINARY_DIR}/winqt/"
 	 if(@ENABLE_BUGSPLAT_SYMBOLS_UPLOAD@)
@@ -98,16 +100,16 @@ elseif(WIN32)
     #####################################################
     # Clean all unwanted files to package.
     #####################################################
-    if(@ENABLE_BUGSPLAT_SYMBOLS_UPLOAD@)
-        remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/*.pdb")
-    else()
-        remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/Qt*.pdb")
-    endif()
+    # Debug symbols are of no use to an end user and dwarf everything else: they were 1418 MB of the
+    # 1751 MB staged for Apollo 1.0.0 (apollo_app.pdb alone 768 MB, liblinphone.pdb 401 MB), which is
+    # most of what a customer downloads. Strip them all, whether they came from windeployqt or from an
+    # install() rule; any crash worth investigating gets debugged against the symbols kept in the local
+    # build tree, which are the same ones. The Bugsplat branch still uploads them first.
+    remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/*.pdb")
 
-     # TODO: remove all pdb when CrashReporter is available. Symbols for crashing are in server so it is not needed for deployment.
-     # if debugging is needed, we could rebuild it and use pdb from local build instead of using official binaries.
-     # Warning: Do not remove files from here like below. NSIS have a check integrity that is done from install() commands.
-    #remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/*.pdb")
+     # Warning inherited from upstream, about the two lines left commented out below: do not remove
+     # files from here. NSIS have a check integrity that is done from install() commands. (Stripping
+     # the pdb above does go through packaging fine, so the warning is not absolute.)
     #remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/*.cmake")
     #remove_file("${CPACK_TEMPORARY_INSTALL_DIRECTORY}/*/*.lib")
 endif()
