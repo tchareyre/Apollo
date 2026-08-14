@@ -5253,23 +5253,23 @@ Expiration : %1</translation>
     <name>NotificationBackend</name>
     <message>
         <source>info_popup_error_title</source>
-        <translation type="vanished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <source>info_popup_error_creating_notification</source>
-        <translation type="vanished">Erreur de création de la notification</translation>
+        <translation>Erreur de création de la notification</translation>
     </message>
     <message>
         <source>incoming_call</source>
-        <translation type="vanished">Appel entrant</translation>
+        <translation>Appel entrant</translation>
     </message>
     <message>
         <source>accept_button</source>
-        <translation type="vanished">Accepter</translation>
+        <translation>Accepter</translation>
     </message>
     <message>
         <source>decline_button</source>
-        <translation type="vanished">Décliner</translation>
+        <translation>Décliner</translation>
     </message>
 </context>
 <context>
@@ -8249,44 +8249,6 @@ Error in the chat</extracomment>
         <location filename="../../view/Control/Tool/Helper/utils.js" line="805"/>
         <source>okButton</source>
         <translation>Ok</translation>
-    </message>
-</context>
-<context>
-    <name>WindowsNotificationBackend</name>
-    <message>
-        <source>incoming_call</source>
-        <translation>Appel entrant</translation>
-    </message>
-    <message>
-        <source>accept_button</source>
-        <translation>Accepter</translation>
-    </message>
-    <message>
-        <source>decline_button</source>
-        <translation>Décliner</translation>
-    </message>
-    <message>
-        <source>info_popup_error_title</source>
-        <translation>Erreur</translation>
-    </message>
-    <message>
-        <source>info_popup_error_creating_notification</source>
-        <translation>Erreur de création de la notification</translation>
-    </message>
-</context>
-<context>
-    <name>SysTrayNotificationBackend</name>
-    <message>
-        <source>incoming_call</source>
-        <translation>Appel entrant</translation>
-    </message>
-    <message>
-        <source>accept_button</source>
-        <translation>Accepter</translation>
-    </message>
-    <message>
-        <source>decline_button</source>
-        <translation>Décliner</translation>
     </message>
 </context>
 </TS>

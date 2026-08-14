@@ -5253,23 +5253,23 @@ Expiration : %1</translation>
     <name>NotificationBackend</name>
     <message>
         <source>info_popup_error_title</source>
-        <translation type="vanished">Error</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <source>info_popup_error_creating_notification</source>
-        <translation type="vanished">Error creating notification</translation>
+        <translation>Error creating notification</translation>
     </message>
     <message>
         <source>incoming_call</source>
-        <translation type="vanished">Incoming call</translation>
+        <translation>Incoming call</translation>
     </message>
     <message>
         <source>accept_button</source>
-        <translation type="vanished">Accept</translation>
+        <translation>Accept</translation>
     </message>
     <message>
         <source>decline_button</source>
-        <translation type="vanished">Decline</translation>
+        <translation>Decline</translation>
     </message>
 </context>
 <context>
@@ -8249,44 +8249,6 @@ Error in the chat</extracomment>
         <location filename="../../view/Control/Tool/Helper/utils.js" line="805"/>
         <source>okButton</source>
         <translation>Ok</translation>
-    </message>
-</context>
-<context>
-    <name>WindowsNotificationBackend</name>
-    <message>
-        <source>incoming_call</source>
-        <translation>Incoming call</translation>
-    </message>
-    <message>
-        <source>accept_button</source>
-        <translation>Accept</translation>
-    </message>
-    <message>
-        <source>decline_button</source>
-        <translation>Decline</translation>
-    </message>
-    <message>
-        <source>info_popup_error_title</source>
-        <translation>Error</translation>
-    </message>
-    <message>
-        <source>info_popup_error_creating_notification</source>
-        <translation>Error creating notification</translation>
-    </message>
-</context>
-<context>
-    <name>SysTrayNotificationBackend</name>
-    <message>
-        <source>incoming_call</source>
-        <translation>Incoming call</translation>
-    </message>
-    <message>
-        <source>accept_button</source>
-        <translation>Accept</translation>
-    </message>
-    <message>
-        <source>decline_button</source>
-        <translation>Decline</translation>
     </message>
 </context>
 </TS>
