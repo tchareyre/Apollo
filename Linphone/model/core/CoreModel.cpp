@@ -538,13 +538,17 @@ void CoreModel::onConfiguringStatus(const std::shared_ptr<linphone::Core> &core,
 	emit configuringStatus(core, status, message);
 }
 
-// Orbit's shared directory has no CardDAV server to point liblinphone's
+namespace {
+constexpr char kDirectoryListName[] = "Annuaire Sidus";
+}
+
+// Sidus's shared directory has no CardDAV server to point liblinphone's
 // native CardDAV client at -- it's exposed as a plain vCard4 list instead
 // (FriendList::Type::VCard4, a simple authenticated GET returning
 // text/vcard, which the org's remote-provisioning config points at through a
 // custom [misc] key) -- so this runs, and re-syncs the same list, on every
 // app startup, keeping the directory current with whatever the admin has in
-// Orbit.
+// Sidus.
 //
 // The list is identified by its TYPE, never by its URL. Matching on the URL
 // looked natural but crashed the app the first time the URL changed (an
@@ -568,16 +572,21 @@ void CoreModel::syncDirectoryFriendList(const std::shared_ptr<linphone::Core> &c
 	if (!directoryList) {
 		directoryList = core->createFriendList();
 		directoryList->setType(linphone::FriendList::Type::VCard4);
-		directoryList->setDisplayName("Annuaire Orbit");
 		directoryList->enableDatabaseStorage(true);
 		core->addFriendList(directoryList);
 	}
+	// Set on every sync, not just on creation: a profile provisioned before the
+	// Orbit -> Sidus rename already has its list and would otherwise keep the
+	// old name forever. Safe because the list is matched by type above, never
+	// by name, so renaming it cannot orphan it or trip friends_list's UNIQUE
+	// constraint -- there is only ever one vCard4 list left by this point.
+	if (directoryList->getDisplayName() != kDirectoryListName) directoryList->setDisplayName(kDirectoryListName);
 	if (directoryList->getUri() != directoryUrl) directoryList->setUri(directoryUrl);
 	directoryList->synchronizeFriendsFromServer();
 }
 
 // Apollo's function keys (BLF/speed-dial/call-park/call-forward), fed by
-// Orbit's per-extension functionKeysStore -- same [misc] custom-key trick
+// Sidus's per-extension functionKeysStore -- same [misc] custom-key trick
 // as syncDirectoryFriendList above (never touched outside provisioning, so
 // it bypasses liblinphone's "don't overwrite an already-configured value"
 // rule), but there's no native liblinphone sync type for this shape, so a

@@ -17,16 +17,16 @@ class QNetworkReply;
 
 // =============================================================================
 
-// Plain record for one row of Orbit's function-keys.json (see
+// Plain record for one row of Sidus's function-keys.json (see
 // backend/src/provisioningServer.js's function-keys.json route) -- position
-// or type/target/label meanings mirror functionKeysStore.js on the Orbit
+// or type/target/label meanings mirror functionKeysStore.js on the Sidus
 // side exactly (type is one of "blf"/"speedDial"/"callPark"/"callForward").
 struct FunctionKeyData {
 	int position = 0;
 	QString type;
 	QString target;
 	QString label;
-	// What to actually dial, resolved by Orbit (provisioningStore.apolloKeyDial)
+	// What to actually dial, resolved by Sidus (provisioningStore.apolloKeyDial)
 	// so the feature codes stay on the server, exactly as they are for a
 	// hardware phone. Differs from `target` for "callForward", which must dial
 	// the enable-forwarding code followed by the destination. `pickupTarget` is

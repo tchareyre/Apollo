@@ -10,7 +10,7 @@
 
 // =============================================================================
 
-// QML-facing wrapper for one Orbit function key (see FunctionKeyData). Kept
+// QML-facing wrapper for one Sidus function key (see FunctionKeyData). Kept
 // as a single layer (no separate "Gui" wrapper like CallHistoryCore/
 // CallHistoryGui) -- function keys are read-only display data plus one
 // invokable action, so there's no per-view state that would justify the
@@ -34,7 +34,7 @@ public:
 
 	// One tap dials mDialTarget (see ToolModel::createCall, which resolves a
 	// bare extension/number the same way the in-app dialer does). Which
-	// digits that is comes from Orbit, not from here -- a "callForward" key
+	// digits that is comes from Sidus, not from here -- a "callForward" key
 	// dials the enable-forwarding code plus its destination, not the
 	// destination itself. A BLF key whose extension is currently ringing
 	// dials mPickupTarget instead, so the press intercepts the call the way

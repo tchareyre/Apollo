@@ -12,7 +12,7 @@
 
 // One instance per watched BLF target extension: owns the SIP SUBSCRIBE to
 // Asterisk's "dialog" event package (RFC 4235) for that extension's hint
-// (already wired server-side via subscribe_context/hint for every Orbit
+// (already wired server-side via subscribe_context/hint for every Sidus
 // extension, same as a hardware Fanvil phone doing BLF), and parses the
 // resulting NOTIFY bodies via DialogInfoParser. Owned exclusively by
 // FunctionKeysModel, which lives on the model/Linphone thread -- never

@@ -1,13 +1,13 @@
 # Apollo
 
-Apollo is the softphone of [Orbit PBX](https://orbit-pbx.fr). It is **a modified version of
+Apollo is the softphone of [Sidus PBX](https://sidus-pbx.fr). It is **a modified version of
 [linphone-desktop](https://gitlab.linphone.org/BC/public/linphone-desktop) by Belledonne
-Communications**, forked in July 2026 and modified by Orbit since then.
+Communications**, forked in July 2026 and modified by Sidus since then.
 
-Changes made by Orbit, relative to upstream: application name, icon and colour palette; Inter/Lexend
-fonts; removal of the Linphone-account login path; automatic synchronisation of the Orbit shared
+Changes made by Sidus, relative to upstream: application name, icon and colour palette; Inter/Lexend
+fonts; removal of the Linphone-account login path; automatic synchronisation of the Sidus shared
 directory as a contact list; real-time BLF and function keys (speed dial, call park, call forward);
-chat and meetings hidden, as Orbit hosts neither a Flexisip nor a conference server.
+chat and meetings hidden, as Sidus hosts neither a Flexisip nor a conference server.
 
 Apollo is distributed under the **GNU General Public License v3** (see `LICENSE.txt`), the same free
 licence upstream offers. Belledonne Communications remains the copyright holder of the original work;

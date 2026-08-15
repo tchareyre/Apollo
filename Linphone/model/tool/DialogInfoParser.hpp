@@ -15,7 +15,7 @@
 // one, early vs proceeding for ringing, etc.) has not been captured and
 // verified against a real Asterisk instance for this feature yet -- this
 // parser is written defensively against the RFC 4235 baseline and should
-// be checked against a real SUBSCRIBE/NOTIFY capture (e.g. via Orbit's
+// be checked against a real SUBSCRIBE/NOTIFY capture (e.g. via Sidus's
 // on-demand SIP capture diagnostic) before relying on it in production.
 namespace DialogInfoParser {
 LinphoneEnums::BlfState parse(const QByteArray &xml);

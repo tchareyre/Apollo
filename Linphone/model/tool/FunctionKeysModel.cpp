@@ -92,7 +92,7 @@ void FunctionKeysModel::onReplyFinished() {
 		key.type = obj.value("type").toString();
 		key.target = obj.value("target").toString();
 		key.label = obj.value("label").toString();
-		// Fall back to the bare target: an Orbit older than these two fields
+		// Fall back to the bare target: an Sidus older than these two fields
 		// still serves usable keys, and that is exactly what this app did
 		// before they existed.
 		key.dialTarget = obj.value("dialTarget").toString(key.target);
